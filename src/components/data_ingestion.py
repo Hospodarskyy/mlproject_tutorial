@@ -12,6 +12,9 @@ from dataclasses import dataclass
 from data_transformation import DataTransformation
 from data_transformation import DataTransformationConfig
 
+from model_training import ModelTrainer
+from model_training import ModelTrainerConfig
+
 
 @dataclass
 class DataIngestionConfig:
@@ -56,4 +59,7 @@ if __name__ == "__main__":
 
     data_transformation = DataTransformation()
     # print(f'\t\ttest_data: {train_data}')
-    data_transformation.initiate_data_transformation(train_data, test_data)
+    train_arr, test_arr, _ = data_transformation.initiate_data_transformation(train_data, test_data)
+
+    model_trainer = ModelTrainer()
+    print(model_trainer.model_training_init(train_arr, test_arr))
